@@ -1,11 +1,11 @@
 const data = require('../data/zoo_data');
 
-function countEntrants(entrants) {
+const countEntrants = (entrants) => {
   // seu código aqui
-}
+};
 
-function calculateEntry(entrants) {
+const calculateEntry = (entrants) => {
   // seu código aqui
-}
+};
 // inicio
 module.exports = { calculateEntry, countEntrants };
