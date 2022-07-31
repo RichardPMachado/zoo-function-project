@@ -40,4 +40,10 @@ describe('Testes da função HandlerElephants', () => {
     const expected = 'bb2a76d8-5fe3-4d03-84b7-dba9cfc048b5';
     expect(actual).toEqual(expected);
   });
+
+  it('Test 9', () => {
+    const actual = handlerElephants('NamEs');
+    const expected = ['Ilana', 'Orval', 'Bea', 'Jefferson'];
+    expect(actual).toEqual(expected);
+  });
 });

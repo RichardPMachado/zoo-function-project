@@ -9,7 +9,7 @@ const countEntrants = (entrants) => entrants.reduce((acc, curr) => {
 }, { adult: 0, child: 0, senior: 0 });
 
 const calculateEntry = (entrants) => {
-  if (!entrants || Object.values(entrants).length === 0) {
+  if (!entrants || Object.entries(entrants).length === 0) {
     return 0;
   }
   const a = countEntrants(entrants);
