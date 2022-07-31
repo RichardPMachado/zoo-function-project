@@ -1,20 +1,20 @@
 const data = require('../data/zoo_data');
 
 const especies = [...data.species];
-const horas = { ...data.hours };
+// const horas = { ...data.hours };
 const a = especies.filter((especie) => especie.availability === 'Tuesday');
 console.log(a);
-const officeHour = (aberto, fechado) => {
-  if (aberto === 0) {
-    return 'CLOSED';
-  }
-  return `Open from ${aberto}am until ${fechado}pm`;
-};
+// const officeHour = (aberto, fechado) => {
+//   if (aberto === 0) {
+//     return 'CLOSED';
+//   }
+//   return `Open from ${aberto}am until ${fechado}pm`;
+// };
 
-const animaisDia = (dia) => {
-  const exhibition = [];
-  especies.find((especie) => especie.availability === dia);
-};
+// const animaisDia = (dia) => {
+//   const exhibition = [];
+//   especies.find((especie) => especie.availability === dia);
+// };
 
 // dia = {
 //   diaDaSemana {
@@ -59,15 +59,15 @@ const expected = {
   'Monday': { 'officeHour': 'CLOSED', 'exhibition': 'The zoo will be closed!' },
 };
 */
-const animais = (animal) => {
-  const bicho = especies.find((especie) => especie.name === animal);
-  return bicho.availability;
-};
+// const animais = (animal) => {
+//   const bicho = especies.find((especie) => especie.name === animal);
+//   return bicho.availability;
+// };
 
 // const objVazio = () => {}
 
 const getSchedule = (scheduleTarget) => {
-  return animais(scheduleTarget);
+  // return animais(scheduleTarget);
   // officeHour: `'Open from ${horas.open}am until ${horas.close}pm'`,
   // exhibition:
 };
