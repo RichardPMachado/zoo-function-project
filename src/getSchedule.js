@@ -46,35 +46,39 @@ const buscarAnimais = (elemento) => {
   const animal = especies.filter((especie) => especie.name === elemento);
   return animal.map((e) => e.availability)[0];
 };
-const diasDaSemana = Object.keys(horas);
-const horarioDeFuncionamento = (diaDaSemana) => {
-  const objVazio = { [diaDaSemana]: {
-    officeHour: horas[diaDaSemana].open === 0 ? 'CLOSED'
-      : `Open from ${horas[diaDaSemana].open}am until ${horas[diaDaSemana].close}pm`,
-    exhibition: horas[diaDaSemana].open === 0
-      ? 'The zoo will be closed!'
-      : especies
-        .filter((elemento) => elemento.availability.includes(diaDaSemana))
-        .map((elemento) => elemento.name),
-  },
-  };
-  return objVazio;
+const dadosFuncionamemto = (dia) => {
+  const officeHour = horas[dia].open === 0 ? 'CLOSED'
+    : `Open from ${horas[dia].open}am until ${horas[dia].close}pm`;
+  const exhibition = horas[dia].open === 0
+    ? 'The zoo will be closed!'
+    : especies
+      .filter((elemento) => elemento.availability.includes(dia))
+      .map((elemento) => elemento.name);
+  return { officeHour, exhibition };
 };
 
-// console.log(horarioDeFuncionamento('Tuesday'));
+const diasDaSemana = Object.keys(horas);
+const horarioDeFuncionamento = () => {
+  const objVazio = diasDaSemana.reduce((acc, curr) => {
+    acc[curr] = dadosFuncionamemto(curr);
+    return acc;
+  }, {});
+  return objVazio;
+};
+// console.log(horarioDeFuncionamento());
 const animaisNome = especies.map(({ name }) => name);
 const diasAnimais = animaisNome.concat(diasDaSemana);
 
 const getSchedule = (scheduleTarget) => {
   if (diasDaSemana.includes(scheduleTarget)) {
-    return horarioDeFuncionamento(scheduleTarget);
+    return { [scheduleTarget]: dadosFuncionamemto(scheduleTarget) };
   }
   if (!diasAnimais.includes(scheduleTarget) || Object.entries(scheduleTarget).length === 0) {
-    const a = diasDaSemana.map((e) => horarioDeFuncionamento(e));
+    const a = horarioDeFuncionamento();
     return a;
   }
   return buscarAnimais(scheduleTarget);
 };
-// console.log(getSchedule());
+console.log(getSchedule('Tuesday'));
 
 module.exports = getSchedule;
