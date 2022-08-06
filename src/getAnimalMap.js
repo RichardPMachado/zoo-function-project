@@ -17,26 +17,20 @@ const nomeTodosAnimais = (especies, sex, sorted) => {
   const objVazio = {};
   const residentes = species.find((especie) => especie.name === especies).residents;
   if (sex === undefined) {
-    // console.log(sex);
-    if (sorted === false) {
-      objVazio[especies] = residentes.map((e) => e.name);
-    } else objVazio[especies] = residentes.map((e) => e.name).sort();
+    objVazio[especies] = residentes.map((e) => e.name);
   } else {
-    if (sorted === false) {
-      objVazio[especies] = residentes.filter((e) => e.sex === sex)
-        .map((e) => e.name);
-    } else {
-        objVazio[especies] = residentes.filter((e) => e.sex === sex)
-        .map((e) => e.name).sort();
-    }
+    objVazio[especies] = residentes.filter((e) => e.sex === sex)
+      .map((e) => e.name);
   }
-  // console.log(objVazio);
+  if (sorted === true) {
+    objVazio[especies].sort();
+  }
+  console.log(objVazio);
   return objVazio;
 };
 
 // console.log(nomeTodosAnimais('lions'));
 const verificaIncludes = (sex = undefined, sorted = false) => {
-  console.log(sex, sorted);
   const objVazio = locais.reduce((acc, curr) => {
     acc[curr] = species.filter((elemento) => elemento.location.includes(curr))
       .map((elemento) => nomeTodosAnimais(elemento.name, sex, sorted));
@@ -55,6 +49,6 @@ const verificaOpcoes = (options) => {
 function getAnimalMap(options = {}) {
   return options.includeNames ? verificaOpcoes(options) : todosAnimaisLocais();
 }
-// console.log(getAnimalMap({ includeNames: true }));
+console.log(getAnimalMap({ includeNames: true, sorted: true }));
 
 module.exports = getAnimalMap;
